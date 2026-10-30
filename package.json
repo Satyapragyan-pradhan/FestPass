@@ -1,0 +1,44 @@
+{
+  "name": "festpass",
+  "version": "1.0.0",
+  "private": true,
+  "description": "FestPass - Distributed Campus Event Ticketing and Entry Validation System",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "cluster": "concurrently -k -p \"[{name}]\" -c \"blue.bold,cyan.bold,green.bold,yellow.bold,magenta.bold,red.bold\" --names \"B1,B2,B3,G1,G2,G3\" \"npm run node:b1\" \"npm run node:b2\" \"npm run node:b3\" \"npm run node:g1\" \"npm run node:g2\" \"npm run node:g3\"",
+    "node:b1": "cross-env NODE_ID=B1 PORT=4001 NODE_ROLE=booth NODE_INDEX=1 npm run start -w apps/server",
+    "node:b2": "cross-env NODE_ID=B2 PORT=4002 NODE_ROLE=booth NODE_INDEX=2 npm run start -w apps/server",
+    "node:b3": "cross-env NODE_ID=B3 PORT=4003 NODE_ROLE=booth NODE_INDEX=3 npm run start -w apps/server",
+    "node:g1": "cross-env NODE_ID=G1 PORT=4004 NODE_ROLE=gate NODE_INDEX=4 npm run start -w apps/server",
+    "node:g2": "cross-env NODE_ID=G2 PORT=4005 NODE_ROLE=gate NODE_INDEX=5 npm run start -w apps/server",
+    "node:g3": "cross-env NODE_ID=G3 PORT=4006 NODE_ROLE=gate NODE_INDEX=6 npm run start -w apps/server",
+    "node:dev:b1": "cross-env NODE_ID=B1 PORT=4001 NODE_ROLE=booth NODE_INDEX=1 npm run dev -w apps/server",
+    "node:dev:b2": "cross-env NODE_ID=B2 PORT=4002 NODE_ROLE=booth NODE_INDEX=2 npm run dev -w apps/server",
+    "node:dev:b3": "cross-env NODE_ID=B3 PORT=4003 NODE_ROLE=booth NODE_INDEX=3 npm run dev -w apps/server",
+    "node:dev:g1": "cross-env NODE_ID=G1 PORT=4004 NODE_ROLE=gate NODE_INDEX=4 npm run dev -w apps/server",
+    "node:dev:g2": "cross-env NODE_ID=G2 PORT=4005 NODE_ROLE=gate NODE_INDEX=5 npm run dev -w apps/server",
+    "node:dev:g3": "cross-env NODE_ID=G3 PORT=4006 NODE_ROLE=gate NODE_INDEX=6 npm run dev -w apps/server",
+    "keygen": "node scripts/keygen.js",
+    "seed": "node scripts/seed.js",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
+    "format:check": "prettier --check \"**/*.{js,jsx,json,md}\""
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.10.0",
+    "concurrently": "^8.2.2",
+    "cross-env": "^7.0.3",
+    "eslint": "^9.10.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-react": "^7.37.5",
+    "globals": "^15.9.0",
+    "prettier": "^3.3.3",
+    "vitest": "^1.6.0"
+  }
+}
