@@ -1,0 +1,16 @@
+{
+  "name": "@festpass/shared",
+  "version": "1.0.0",
+  "description": "Shared constants, Snowflake ID generator, HLC, token helpers, and schemas for FestPass",
+  "main": "src/index.js",
+  "type": "commonjs",
+  "scripts": {
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "vitest": "^1.6.0"
+  }
+}
